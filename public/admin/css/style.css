@@ -1,0 +1,46 @@
+.header {
+  padding:50px;
+  background-color: rgb(20, 19, 19);
+  color:white;
+}
+.body {
+  display: flex;
+}
+.inner-sider  {
+  width: 250px;
+  background-color: rgb(39, 36, 36);
+  color: white;
+  height: 100vh;
+}
+
+.inner-sider div {
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid;
+}
+a {
+  color: white;
+}
+a:hover {
+  text-decoration: none;
+
+}
+
+
+button.active{
+  border: 10px solid black;
+  display: inline-flex;
+}
+
+.hiden-alert {
+  display: none;
+}
+
+.show-alert {
+  position: fixed;
+  right: 0;
+  top: 40px;
+  z-index: 999;
+  width: 500px;
+  padding: 10px;
+}

@@ -1,0 +1,11 @@
+mixin alert-express-flash(dataTime) 
+  - if (messages.info)
+    .message.info
+      div(class="alert alert-primary show-alert" data-time=dataTime alert-express-flash) #{messages.info}
+        div(click-hident) X
+
+mixin alert-express-flash(dataTime) 
+  - if (messages.error)
+    .message.error
+      div(class="alert alert-primary show-alert" data-time=dataTime alert-express-flash) #{messages.error}
+        div(click-hident) X

@@ -1,0 +1,10 @@
+mixin pagination(objectPagination)
+  nav(aria-label='Page navigation example')
+    ul.pagination
+      li(class=["page-item",  objectPagination.currentPage == 1 ? "disabled" : ""] paginationItem=objectPagination.currentPage - 1)
+        buton.page-link Previous
+      - for (let i = 1; i <= objectPagination.totalPage; i++)
+          li(class=["page-item", objectPagination.currentPage  == i  ? "active" :""] paginationItem=i)
+            buton.page-link #{i}
+      li(class=["page-item",  objectPagination.currentPage == objectPagination.totalPage ? "disabled" : ""]  paginationItem = objectPagination.currentPage + 1)
+        buton.page-link Next

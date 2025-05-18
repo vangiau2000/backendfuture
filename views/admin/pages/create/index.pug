@@ -1,0 +1,36 @@
+extends ../../layout/default.pug
+include ../mixins/alert.pug
+block main
+  .container
+    +alert-express-flash("4000")
+    form(action="/admin/products/create", method="post" enctype="multipart/form-data") 
+      div.form-group 
+        labe Title
+        input(type="text" name="title")
+      div.form-group 
+        labe Des
+        textarea(name="description" placeholder="THông tin mô tả") 
+      div.form-group 
+        labe Price
+        input(type="text" name="price")
+      div.form-group 
+        labe DiscountePercent
+        input(type="text" name="discountPercentage")
+      div.form-group 
+        labe Stock
+        input(type="text" name="stock")
+      div.form-group 
+        labe Thubernail
+        input(type="file" name="thumbnail" input-upload)
+        img(src="", alt="" img-upload)
+      div.form-group 
+        labe status
+        select(name="status")
+          option(value="active")  hoạt động
+          option(value="inactive" ) không hoạt động
+      div.form-group 
+        labe Position
+        input(type="Number" name="position" min=1 placeholder="Tự động tăng")
+      .form-group
+        button(class="btn btn-primary") Gửi
+  script(src="/admin/js/product.js") 

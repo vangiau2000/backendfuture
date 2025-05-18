@@ -1,0 +1,79 @@
+extends ../../layout/default.pug
+include ../mixins/search.pug
+include ../mixins/pagination.pug
+include ../mixins/changestatusmutil.pug
+include ../mixins/alert.pug
+
+block main
+  +alert-express-flash("2000")
+  .container.mt-5
+    .card 
+      .card-header Tìm kiếm 
+      .card-body
+        .row 
+          .col-8
+            button(class=["btn btn-primary mr-2", buttonActiveFilter == "" ? "active" : "" ] buttonFilter value="") Tất cả
+            button(class=["btn btn-secondary mr-2", buttonActiveFilter == "active" ? "active" : "" ] buttonFilter value="active") Hoạt động
+            button(class=["btn btn-warning mr-2", buttonActiveFilter == "inactive" ? "active" : "" ] buttonFilter value="inactive") Dừng hoạt động
+          .col-4 
+            +search()
+    .card 
+      .card-body
+        .row
+          .col-6
+            +change-status-mutil("/admin/products/change-status-mutil?_method=PATCH")
+          .col-6 
+            a(href="/admin/products/create" class="btn btn-primary") + Tạo sản phẩm
+    .card
+      .card-header 
+        p Danh Sách sản phẩm
+      .card-body
+        table.table.table-bordered.table-hover
+          thead.table-dark
+            tr
+              th 
+                input(type="checkbox", name="" id="check-box-all")
+              th STT
+              th Hình ảnh
+              th Tiêu đề
+              th Giá
+              th Position
+              th Trạng thái
+              th Hành động
+              td Xem Chi tiết
+          tbody
+            each item, index in dataProduct 
+              tr 
+                td 
+                  input(type="checkbox" name="" idItem=item.id check-box-item)
+                td #{index + 1}
+                td 
+                  img(src=item.thumbnail, alt=item.title, width="100")
+                td #{item.title}
+                td #{item.price}
+                td  
+                  input(type="Number" name="position" value=item.position position idItem=item.id)
+                td 
+                  if (item.status == "active") 
+                    div(class="btn btn-primary" button-status-change idItem=item.id valueStatus=item.status) Hoạt động
+                  else
+                    div(class="btn btn-danger" button-status-change idItem=item.id valueStatus=item.status ) Ngừng hoạt động
+                  form(action="/admin/products/updatestatus" id="formChangeStatus") 
+                td
+                  a.btn.btn-primary(href="#") Sửa
+                  a.btn.btn-danger.ms-2(href="#") Xoá
+                td 
+                  a(class="btn btn-warning" href=`/admin/products/detail/${item.id}`) Xem chi tiết
+
+    +pagination(objectPagination)
+    form(action=""
+      id="form-change-status"
+      method="POST"
+      path=`${prefixAmin}/products/changestatus`
+      )
+    form(action=""
+      method="POST"
+      id="form-change-position"
+      path=`${prefixAmin}/products/position`
+      )
+  script(src="/admin/js/product.js") 

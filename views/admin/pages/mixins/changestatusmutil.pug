@@ -1,0 +1,12 @@
+mixin change-status-mutil(path)
+  form(action=path id="form-change-mutil" method="POST")
+            .d-flex.align-items-center
+              .form-group
+                select(name="type" id="idSelect" class="p-1") 
+                  option(value="active") Hoạt động
+                  option(value="inactive") Ngừng hoạt động 
+                  option(value="deleted-all") Xoá Các sản phẩm đã chọn
+              .form-group 
+                input(type="text" name="ids" inputIds)
+              .form-group
+                button(type="submit" class="btn btn-danger") Gửi
